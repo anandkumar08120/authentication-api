@@ -26,7 +26,7 @@ const signIn = async (req, res) => {
       { username : username },
       process.env.SECRET_KEY
     );
-    res.status(200).json({ message: "sucessfully logged in" });
+    res.status(200).json({ userName:username,token:token });
   } catch (e) {
     return res.status(400).json(e);
   }
@@ -51,7 +51,7 @@ const signUp=async(req,res)=>{
         });
         const token = jwt.sign({ username: user.username }, process.env.SECRET_KEY);
         
-        return res.status(200).json({ message: "Account created successfully " });
+        return res.status(200).json({ token:token });
       } catch (e) {
         return res.status(400).json(e);
       }
